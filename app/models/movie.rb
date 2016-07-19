@@ -1,4 +1,5 @@
 class Movie < ApplicationRecord
+  mount_uploader :poster_image_url, ImageUploader
   has_many :reviews
   
   validates :title,
