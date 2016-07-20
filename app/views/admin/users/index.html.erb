@@ -1,0 +1,6 @@
+<%= link_to "Back to Movies", root_path %>
+<ul>
+  <% @users.each do |user| %>
+  <li><%= user.full_name %> <% if user.admin? %>* ADMIN<% end %></li>
+  <% end %>
+</ul>
