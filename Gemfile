@@ -32,6 +32,9 @@ gem 'carrierwave'
 # Handle image resizing
 gem 'mini_magick'
 
+# Use Kaminari for pagination
+gem 'kaminari'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
