@@ -5,8 +5,7 @@ class Admin::UsersController < ApplicationController
     @users = User.all.page(params[:page]).per(10)
   end
 
-  private
-
+  private 
   def require_admin
     unless current_user.admin?
       # session[:alert] = "You must be an admin to access this page."

@@ -6,6 +6,7 @@
       <th>Name</th>
       <th>Email</th>
       <th>Role</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -14,7 +15,9 @@
       <td><%= user.full_name %></td>
       <td><%= user.email %></td>
       <td><%= user.admin? ? '* Admin *' : 'User' %></td>
+      <td><%= link_to "Edit", edit_user_path(user) %></td>
     </tr>
   </tbody>
   <% end %>
 </table>
+<%= link_to "Create a new user", new_user_path %>
