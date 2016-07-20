@@ -10,11 +10,19 @@
 
   <body>
     <% if admin_preview_mode? %>
-    <p>You are currently previewing as <%= current_user.email %>. <%= link_to "Click here", admin_preview_path, method: :delete %> to return to your admin account.</p>
+      <p class="bg-primary">You are currently previewing as <%= current_user.email %>. <%= link_to "Click here", admin_preview_path, method: :delete %> to return to your admin account.</p>
     <% end %>
+    <%= render 'layouts/menu' %>
+    <div class="container">
     <% flash.each do |key, value| %>
-      <%= content_tag(:div, value) %>
+      <%= content_tag(:div, class: ["alert", "alert-success", "alert-dismissible"], role: "alert") do %>
+        <%= button_tag(type: "button", class: ["close"], "data-dismiss": "alert", "aria-label": "close") do %>
+          <%= content_tag(:span, "x", "aria-hidden": "true") %>
+        <% end %>
+        <%= value %>
+      <% end %>
     <% end %>
+    </div>
     <%= yield %>
     <%= render 'layouts/footer' %>
   </body>

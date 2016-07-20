@@ -1,23 +1,33 @@
-<%= link_to "Back to Movies", root_path %>
-<%= paginate @users %>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Role</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
-    <tr>
-      <td><%= user.full_name %></td>
-      <td><%= user.email %></td>
-      <td><%= user.admin? ? '* Admin *' : 'User' %></td>
-      <td><%= link_to "Edit", edit_admin_user_path(user) %> | <%= link_to "Delete", admin_user_path(user), method: :delete, data: {confirm: "Are you sure?"} %> | <%= link_to "Preview", admin_path(user) %><%= session[:preview] %></td>
-    </tr>
-  </tbody>
-  <% end %>
-</table>
-<%= link_to "Create a new user", new_admin_user_path %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <%= link_to button_tag("<< Back to Movies", type: "button", class: ["btn", "btn-default", "btn-sm"]), root_path %>
+    </div>
+    <div class="col-md-offset-4 col-md-4 text-right">
+      <%= link_to button_tag(content_tag(:span, '',class: ["glyphicon", "glyphicon-plus"], "aria-hidden": "true") + " Create a New User", type: "button", class: ["btn", "btn-default", "btn-sm", "admin_add_user"], "aria-label": "Add User"), new_admin_user_path %>
+    </div>
+  </div>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+      <tr>
+        <td><%= user.full_name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.admin? ? '* Admin *' : 'User' %></td>
+        <td><%= link_to content_tag(:span, '',class: ["glyphicon", "glyphicon-pencil"], "aria-hidden": "true"), edit_admin_user_path(user) %> | <%= link_to content_tag(:span, '',class: ["glyphicon", "glyphicon-trash"], "aria-hidden": "true"), admin_user_path(user), method: :delete, data: {confirm: "Are you sure?"} %> | <%= link_to content_tag(:span, '',class: ["glyphicon", "glyphicon-eye-open"], "aria-hidden": "true"), admin_path(user) %><%= session[:preview] %></td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+  <div class="row text-center">
+    <%= paginate @users %>
+  </div>
+</div>

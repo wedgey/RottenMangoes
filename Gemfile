@@ -35,6 +35,9 @@ gem 'mini_magick'
 # Use Kaminari for pagination
 gem 'kaminari'
 
+# Use bootstrap sass for styling
+gem 'bootstrap-sass'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
