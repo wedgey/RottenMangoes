@@ -1,5 +1,5 @@
-class Admin::UsersController < ApplicationController
-  # before_action :require_admin, except: [:unpreview]
+class Admin::UsersController < UsersController
+  before_action :require_admin, except: [:unpreview]
 
   def index
     @users = User.all.page(params[:page]).per(10)
@@ -17,6 +17,11 @@ class Admin::UsersController < ApplicationController
   end
 
   private 
+
+  def user_params
+    params.require(:user).permit(:email, :firstname, :lastname, :password, :password_confirmation, :admin)
+  end
+
   def require_admin
     unless current_user.admin?
       # session[:alert] = "You must be an admin to access this page."

@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_action :require_admin, only: [:update, :destroy]
   
   def new
     @user = User.new
@@ -43,14 +42,7 @@ class UsersController < ApplicationController
   protected
 
   def user_params
-    params.require(:user).permit(:email, :firstname, :lastname, :password, :password_confirmation, :admin)
-  end
-
-  def require_admin
-    unless current_user.admin?
-      # session[:alert] = "You must be an admin to access this page."
-      redirect_to root_path, notice: "You must be an admin to access this page."
-    end
+    params.require(:user).permit(:email, :firstname, :lastname, :password, :password_confirmation)
   end
 
 end

@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
 
   namespace :admin do 
-    resources :users, only: [:index]
+    resources :users
     get '/preview/:id', to: 'users#preview'
     delete '/preview', to: 'users#unpreview'
   end
