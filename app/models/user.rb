@@ -9,4 +9,8 @@ class User < ApplicationRecord
   def full_name
     "#{firstname} #{lastname}"
   end
+
+  def admin?
+    admin
+  end
 end
