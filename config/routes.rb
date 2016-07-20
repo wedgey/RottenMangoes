@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   namespace :admin do 
     resources :users, only: [:index]
+    get '/preview/:id', to: 'users#preview'
+    delete '/preview', to: 'users#unpreview'
   end
 
   root to: 'movies#index'

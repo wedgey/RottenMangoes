@@ -9,6 +9,9 @@
   </head>
 
   <body>
+    <% if admin_preview_mode? %>
+    <p>You are currently previewing as <%= current_user.email %>. <%= link_to "Click here", admin_preview_path, method: :delete %> to return to your admin account.</p>
+    <% end %>
     <% flash.each do |key, value| %>
       <%= content_tag(:div, value) %>
     <% end %>

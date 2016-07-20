@@ -13,8 +13,13 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
+    return User.find(session[:preview]) if session[:preview]
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  helper_method :current_user
+  def admin_preview_mode?
+    !session[:preview].nil?
+  end
+
+  helper_method :current_user, :admin_preview_mode?
 end
