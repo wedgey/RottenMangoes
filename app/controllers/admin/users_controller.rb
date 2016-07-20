@@ -11,7 +11,6 @@ class Admin::UsersController < UsersController
   end
 
   def unpreview
-    # session.delete(:preview)
     session.delete(:preview)
     redirect_to root_path, notice: "You are no longer in preview mode."
   end
