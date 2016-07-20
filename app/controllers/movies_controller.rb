@@ -2,17 +2,16 @@ class MoviesController < ApplicationController
   def index
     @movies = Movie.all
     
-    @movies = @movies.where("title like ?", "%#{search_params[:title]}%") unless search_params[:title].nil?
-    @movies = @movies.where("director like ?", "%#{search_params[:director]}%") unless search_params[:director].nil?
+    @movies = @movies.title_search(search_params[:title]) unless search_params[:title].nil?
+    @movies = @movies.director_search(search_params[:director]) unless search_params[:director].nil?
     case search_params[:duration]
     when 'Under 90 minutes'
-      @movies = @movies.where("runtime_in_minutes < 90")
+      @movies = @movies.under_90_search
     when 'Between 90 and 120 minutes'
-      @movies = @movies.where("runtime_in_minutes BETWEEN 90 AND 120")
+      @movies = @movies.between_90_120_search
     when 'Over 120 minutes'
-      @movies = @movies.where("runtime_in_minutes > 120")
+      @movies = @movies.over_120_search
     end
-    # @movies = Movie.where(search_params)
   end
 
   def show

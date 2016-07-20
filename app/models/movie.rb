@@ -1,4 +1,10 @@
 class Movie < ApplicationRecord
+  scope :title_search, ->(title) { where("title like ?", "%#{title}%") }
+  scope :director_search, ->(director) { where("director like ?", "%#{director}%") }
+  scope :under_90_search, -> { where("runtime_in_minutes < 90") }
+  scope :between_90_120_search, -> { where("runtime_in_minutes BETWEEN 90 AND 120") }
+  scope :over_120_search, -> { where("runtime_in_minutes > 120") }
+
   mount_uploader :poster_image_url, ImageUploader
   has_many :reviews
   
