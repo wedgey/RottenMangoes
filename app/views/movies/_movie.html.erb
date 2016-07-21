@@ -1,8 +1,13 @@
 <div class="col-xs-12 col-md-4">
-  <%= link_to image_tag(movie.poster_image_url.thumb.url), movie_path(movie) %>
-  <h2><%= link_to movie.title, movie_path(movie) %></h2>
-  <h3><%= movie.release_date %></h3>
-  <h4>Dir. <%= movie.director %> | <%= movie.runtime_in_minutes %> minutes</h4>
-  <p><%= movie.description %></p>
-  <p><%= movie.review_average %>/10</p>
+  <div class='thumbnail'>
+    <%= link_to image_tag(movie.poster_image_url.large.url), movie_path(movie) %>
+    <div class="caption">
+      <h2><%= link_to movie.title, movie_path(movie) %></h2>
+      <small><%= movie.release_date.getlocal.strftime("%a %b %e, %Y - %l:%M %p")  %></small>
+      <h5><%= "Director".pluralize(movie.director.split(',').count) %>: <%= movie.director %></h5>
+      <h5>Runtime: <%= movie.runtime_in_minutes %> minutes</h5>
+      <p><%= movie.description %></p>
+      <p><%= movie.review_average %>/10</p>
+    </div>
+  </div>
 </div>
