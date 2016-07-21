@@ -2,8 +2,9 @@ class MoviesController < ApplicationController
   def index
     @movies = Movie.all
     
-    @movies = @movies.title_search(search_params[:title]) unless search_params[:title].nil?
-    @movies = @movies.director_search(search_params[:director]) unless search_params[:director].nil?
+    @movies = @movies.better_search(search_params[:q], search_params[:q])
+    # @movies = @movies.title_search(search_params[:title]) unless search_params[:title].nil?
+    # @movies = @movies.director_search(search_params[:director]) unless search_params[:director].nil?
     case search_params[:duration]
     when 'Under 90 minutes'
       @movies = @movies.under_90_search
@@ -62,7 +63,7 @@ class MoviesController < ApplicationController
 
   def search_params
     params.permit(
-      :title, :director, :duration
+      :q, :duration
     )
   end
 
