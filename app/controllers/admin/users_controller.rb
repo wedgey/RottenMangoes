@@ -23,7 +23,6 @@ class Admin::UsersController < UsersController
 
   def require_admin
     unless current_user.admin?
-      # session[:alert] = "You must be an admin to access this page."
       redirect_to root_path, notice: "You must be an admin to access this page."
     end
   end
